@@ -11,29 +11,6 @@
 ## 模板
 
 ```
-- Dashboard
-  - 分析页
-  - 监控页
-  - 工作台
-- 表单页
-  - 基础表单页
-  - 分步表单页
-  - 高级表单页
-- 列表页
-  - 查询表格
-  - 标准列表
-  - 卡片列表
-  - 搜索列表（项目/应用/文章）
-- 详情页
-  - 基础详情页
-  - 高级详情页
-- 结果
-  - 成功页
-  - 失败页
-- 异常
-  - 403 无权限
-  - 404 找不到
-  - 500 服务器出错
 - 帐户
   - 登录
   - 注册
@@ -43,10 +20,10 @@
 ## 使用
 
 ```bash
-$ git clone https://github.com/ant-design/ant-design-pro.git --depth=1
-$ cd ant-design-pro
+$ git clone https://github.com/sosout/react-antd-dva.git
+$ cd react-antd-dva
 $ npm install
-$ npm start         # 访问 http://localhost:8000
+$ npm start         # 访问 http://localhost:8888
 ```
 
 ## 兼容性

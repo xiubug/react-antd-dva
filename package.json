@@ -1,11 +1,11 @@
 {
-    "name": "ant-design-pro",
-    "version": "0.3.0",
-    "description": "An out-of-box UI solution for enterprise applications",
+    "name": "react-antd-dva",
+    "version": "0.0.1",
+    "description": "基于react + ant-design + dva + Mock 企业级后台管理系统最佳实践",
     "private": true,
     "scripts": {
       "precommit": "npm run lint-staged",
-      "start": "roadhog server",
+      "start": "cross-env PORT=8888 roadhog server",
       "start:no-proxy": "cross-env NO_PROXY=true roadhog server",
       "build": "roadhog build",
       "site": "roadhog-api-doc static && gh-pages -d dist",
