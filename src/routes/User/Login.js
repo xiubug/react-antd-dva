@@ -8,7 +8,7 @@ const FormItem = Form.Item;
 const { TabPane } = Tabs;
 
 @connect(state => ({
-  login: state.login
+  login: state.login,
 }))
 @Form.create()
 
