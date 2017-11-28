@@ -1,5 +1,5 @@
 {
-  "entry": "src/index.js",
+  "entry": "src/app.js",
   "extraBabelPlugins": [
     "transform-runtime",
     "transform-decorators-legacy",
@@ -13,12 +13,8 @@
       ]
     }
   },
-  "externals": {
-    "g2": "G2",
-    "g-cloud": "Cloud",
-    "g2-plugin-slider": "G2.Plugin.slider"
-  },
+  "externals": {},
   "ignoreMomentLocale": true,
-  "theme": "./src/theme.js",
+  "theme": "./src/components/theme.js",
   "hash": true
 }

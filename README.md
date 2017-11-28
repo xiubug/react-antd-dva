@@ -30,3 +30,22 @@ $ npm start         # 访问 http://localhost:8888
 
 现代浏览器及 IE11。
 
+
+## dva用法
+
+### dynamic
+
+解决组件动态加载问题的 util 方法，基于 react-async-component 实现。比如：
+
+```javascript
+import dynamic from 'dva/dynamic';
+
+const UserPageComponent = dynamic({
+  app,
+  models: () => [
+    import('./models/users'),
+  ],
+  component: () => import('./routes/UserPage'),
+});
+```
+
