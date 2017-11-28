@@ -6,7 +6,7 @@
     "scripts": {
       "precommit": "npm run lint-staged",
       "start": "cross-env PORT=8888 roadhog server",
-      "start:no-proxy": "cross-env NO_PROXY=true roadhog server",
+      "start:no-proxy": "cross-env PORT=8888 NO_PROXY=true roadhog server",
       "build": "roadhog build",
       "site": "roadhog-api-doc static && gh-pages -d dist",
       "analyze": "roadhog build --analyze",

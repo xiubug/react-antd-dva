@@ -8,15 +8,15 @@ const FormItem = Form.Item;
 const { TabPane } = Tabs;
 
 @connect(state => ({
-  login: state.login,
+  login: state.login
 }))
 @Form.create()
+
 export default class Login extends Component {
   state = {
     count: 0,
     type: 'account',
   }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.login.status === 'ok') {
       this.props.dispatch(routerRedux.push('/'));
