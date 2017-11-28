@@ -49,3 +49,15 @@ const UserPageComponent = dynamic({
 });
 ```
 
+## react-router 4.0
+
+### exact（boolean类型）
+
+如果为 true, 则仅在位置完全匹配时才应用。
+
+```javascript
+path	location.pathname	exact	matches?
+/one	/one/two	        true	no
+/one	/one/two	        false	yes
+```
+

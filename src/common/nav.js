@@ -15,17 +15,17 @@ const dynamicWrapper = (app, models, component) => dynamic({
 export const getNavData = app => [
   {
     component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
-    path: '/user',
+    path: '/',
     layout: 'UserLayout',
     children: [
       {
         name: '账户',
         icon: 'user',
-        path: 'user',
+        path: '',
         children: [
           {
             name: '登录',
-            path: 'login',
+            path: '',
             component: dynamicWrapper(app, ['login'], () => import('../routes/User/Login')),
           },
         ],
