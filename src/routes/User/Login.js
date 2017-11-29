@@ -76,7 +76,7 @@ export default class Login extends Component {
     const { getFieldDecorator } = form;
     const { count, type } = this.state;
     return (
-      <div className={styles.main}>
+      <div className={styles['login-form']}>
         <Form onSubmit={this.handleSubmit}>
           <Tabs animated={false} className={styles.tabs} activeKey={type} onChange={this.onSwitch}>
             <TabPane tab="账户密码登录" key="account">

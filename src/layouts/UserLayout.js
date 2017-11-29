@@ -15,10 +15,10 @@ class UserLayout extends React.PureComponent {
   getPageTitle() {
     const { getRouteData, location } = this.props;
     const { pathname } = location;
-    let title = 'Ant Design Pro';
+    let title = 'react antd dva';
     getRouteData('UserLayout').forEach((item) => {
       if (item.path === pathname) {
-        title = `${item.name} - Ant Design Pro`;
+        title = `${item.name} - react antd dva`;
       }
     });
     return title;
@@ -28,7 +28,7 @@ class UserLayout extends React.PureComponent {
 
     return (
       <DocumentTitle title={this.getPageTitle()}>
-        <div className={styles.container}>
+        <div className={styles['user-layout']}>
           {
             getRouteData('UserLayout').map(item =>
               (

@@ -1,12 +1,19 @@
 @import "~antd/lib/style/themes/default.less";
 
-.main {
-  width: 368px;
-  margin: 0 auto;
+.login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -203px;
+  margin-left: 95px;
+  width: 405px;
+  height: 405px;
+  padding: 36px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, .08);
+  background-color: #fff;
+  border-radius: 4px;
 
   .tabs {
-    padding: 0 2px;
-    margin: 0 -2px;
     :global {
       .ant-tabs-tab {
         font-size: 16px;
@@ -27,6 +34,10 @@
 
     .ant-form-item {
       margin-bottom: 24px;
+    }
+    .ant-form-explain {
+      font-size: 12px;
+      position: absolute;
     }
   }
 
