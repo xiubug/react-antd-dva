@@ -21,11 +21,11 @@ export const getNavData = app => [
       {
         name: '账户',
         icon: 'user',
-        path: '',
+        path: '/user',
         children: [
           {
             name: '登录',
-            path: '',
+            path: '/login',
             component: dynamicWrapper(app, ['login'], () => import('../routes/User/Login')),
           },
         ],

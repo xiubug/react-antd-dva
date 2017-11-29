@@ -53,7 +53,7 @@ function RouterConfig({ history, app }) {
     <LocaleProvider locale={zhCN}>
       <Router history={history}>
         <Switch>
-          <Route exact path="/" render={props => <UserLayout {...props} {...passProps} />} />
+          <Route exact path="/user/login" render={props => <UserLayout {...props} {...passProps} />} />
         </Switch>
       </Router>
     </LocaleProvider>
