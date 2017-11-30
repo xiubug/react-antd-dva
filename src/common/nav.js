@@ -15,6 +15,13 @@ const dynamicWrapper = (app, models, component) => dynamic({
 export const getNavData = app => [
   {
     component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
+    layout: 'BasicLayout',
+    name: '首页',
+    path: '/',
+    children: []
+  },
+  {
+    component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
     path: '/',
     layout: 'UserLayout',
     children: [

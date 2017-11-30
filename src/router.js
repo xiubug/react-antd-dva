@@ -1,13 +1,15 @@
 import React from 'react';
-import { Router, Route, Switch } from 'dva/router';
+import { Router, Route, Switch, Redirect } from 'dva/router';
 import { LocaleProvider, Spin } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import dynamic from 'dva/dynamic';
 import cloneDeep from 'lodash/cloneDeep';
+import Store from 'store';
 import { getNavData } from './common/nav';
 import { getPlainNode } from './utils/utils';
 
 import styles from './index.less';
+import Config from './common/config';
 
 dynamic.setDefaultLoadingComponent(() => {
   return <Spin size="large" className={styles.globalSpin} />;
@@ -37,6 +39,15 @@ function getLayout(navData, path) {
   };
 }
 
+// 登录验证
+function requireAuth(Layout, props, passProps) {
+  if (Store.get(Config.USER_TOKEN)) {
+    return (<Layout {...props} {...passProps} />);
+  } else {
+    return (<Redirect to='/user/login' />);
+  }
+}
+
 function RouterConfig({ history, app }) {
   const navData = getNavData(app);
   const UserLayout = getLayout(navData, 'UserLayout').component;
@@ -53,6 +64,7 @@ function RouterConfig({ history, app }) {
     <LocaleProvider locale={zhCN}>
       <Router history={history}>
         <Switch>
+          <Route exact path="/" render={props => requireAuth(UserLayout, props, passProps)} />} />
           <Route exact path="/user/login" render={props => <UserLayout {...props} {...passProps} />} />
         </Switch>
       </Router>
