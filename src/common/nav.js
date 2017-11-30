@@ -18,7 +18,20 @@ export const getNavData = app => [
     layout: 'BasicLayout',
     name: '首页',
     path: '/',
-    children: []
+    children: [
+      {
+        name: '账户',
+        icon: 'user',
+        path: '/user',
+        children: [
+          {
+            name: '登录',
+            path: '/login',
+            component: dynamicWrapper(app, ['login'], () => import('../routes/User/Login')),
+          },
+        ],
+      },
+    ],
   },
   {
     component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),

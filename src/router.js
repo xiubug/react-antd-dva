@@ -42,9 +42,9 @@ function getLayout(navData, path) {
 // 登录验证
 function requireAuth(Layout, props, passProps) {
   if (Store.get(Config.USER_TOKEN)) {
-    return (<Layout {...props} {...passProps} />);
+    return <Layout {...props} {...passProps} />;
   } else {
-    return (<Redirect to='/user/login' />);
+    return <Redirect to="/user/login" />;
   }
 }
 
@@ -64,7 +64,7 @@ function RouterConfig({ history, app }) {
     <LocaleProvider locale={zhCN}>
       <Router history={history}>
         <Switch>
-          <Route exact path="/" render={props => requireAuth(UserLayout, props, passProps)} />} />
+          <Route exact path="/" render={props => requireAuth(UserLayout, props, passProps)} />
           <Route exact path="/user/login" render={props => <UserLayout {...props} {...passProps} />} />
         </Switch>
       </Router>
