@@ -70,7 +70,7 @@ function RouterConfig({ history, app }) {
         <Switch>
           <Route path="/user" render={props => <UserLayout {...props} {...passProps} />} />
           <Route path="/dashboard/analysis" render={props => requireAuth(BasicLayout, props, passProps)} />
-          <Redirect exact from='/' to='/dashboard/analysis' />
+          <Redirect exact from="/" to="/dashboard/analysis" />
         </Switch>
       </Router>
     </LocaleProvider>
