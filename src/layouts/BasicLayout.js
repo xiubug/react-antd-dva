@@ -9,10 +9,6 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import Debounce from 'lodash-decorators/debounce';
-import HeaderSearch from '../components/HeaderSearch';
-import NoticeIcon from '../components/NoticeIcon';
-import GlobalFooter from '../components/GlobalFooter';
-import NotFound from '../routes/Exception/404';
 import styles from './BasicLayout.less';
 
 const { Header, Sider, Content } = Layout;
