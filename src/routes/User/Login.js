@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux, Link } from 'dva/router';
 import { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } from 'antd';
+import Store from 'store';
+import Config from '../../common/config';
 import styles from './Login.less';
 
 const FormItem = Form.Item;
@@ -19,6 +21,8 @@ export default class Login extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.login.status === 'ok') {
+      // 模拟登录Token
+      Store.set(Config.USER_TOKEN, (new Date()).getTime());
       this.props.dispatch(routerRedux.push('/'));
     }
   }
@@ -95,7 +99,7 @@ export default class Login extends Component {
                   <Input
                     size="large"
                     prefix={<Icon type="user" className={styles.prefixIcon} />}
-                    placeholder="admin"
+                    placeholder="sosout"
                   />
                 )}
               </FormItem>
@@ -109,7 +113,7 @@ export default class Login extends Component {
                     size="large"
                     prefix={<Icon type="lock" className={styles.prefixIcon} />}
                     type="password"
-                    placeholder="888888"
+                    placeholder="sosout"
                   />
                 )}
               </FormItem>

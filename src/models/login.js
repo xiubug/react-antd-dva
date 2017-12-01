@@ -61,6 +61,7 @@ export default {
     changeSubmitting(state, { payload }) {
       return {
         ...state,
+        status: payload,
         submitting: payload,
       };
     },

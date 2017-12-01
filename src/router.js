@@ -41,7 +41,10 @@ function getLayout(navData, path) {
 
 // 登录验证
 function requireAuth(Layout, props, passProps) {
-  if (Store.get(Config.USER_TOKEN)) {
+  // 模拟token失效时间
+  const token = Store.get(Config.USER_TOKEN);
+  const current = (new Date()).getTime();
+  if (token && current - token < 7200000) {
     return <Layout {...props} {...passProps} />;
   } else {
     return <Redirect to="/user/login" />;
@@ -51,6 +54,7 @@ function requireAuth(Layout, props, passProps) {
 function RouterConfig({ history, app }) {
   const navData = getNavData(app);
   const UserLayout = getLayout(navData, 'UserLayout').component;
+  const BasicLayout = getLayout(navData, 'BasicLayout').component;
 
   const passProps = {
     app,
@@ -64,8 +68,9 @@ function RouterConfig({ history, app }) {
     <LocaleProvider locale={zhCN}>
       <Router history={history}>
         <Switch>
-          <Route exact path="/" render={props => requireAuth(UserLayout, props, passProps)} />
-          <Route exact path="/user/login" render={props => <UserLayout {...props} {...passProps} />} />
+          <Route path="/user" render={props => <UserLayout {...props} {...passProps} />} />
+          <Route path="/dashboard/analysis" render={props => requireAuth(BasicLayout, props, passProps)} />
+          <Redirect exact from='/' to='/dashboard/analysis' />
         </Switch>
       </Router>
     </LocaleProvider>
