@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin } from 'antd';
+import { Menu, Icon, Tag, message } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
 import { Link, Route, Redirect, Switch } from 'dva/router';
@@ -9,9 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import Debounce from 'lodash-decorators/debounce';
-import styles from './BasicLayout.less';
 
-const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
 const query = {
@@ -44,9 +42,6 @@ class BasicLayout extends React.PureComponent {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
     this.menus = props.navData.reduce((arr, current) => arr.concat(current.children), []);
-    this.state = {
-      openKeys: this.getDefaultCollapsedSubMenus(props),
-    };
   }
   getChildContext() {
     const { location, navData, getRouteData } = this.props;
@@ -198,15 +193,6 @@ class BasicLayout extends React.PureComponent {
     });
     return groupBy(newNotices, 'type');
   }
-  handleOpenChange = (openKeys) => {
-    const lastOpenKey = openKeys[openKeys.length - 1];
-    const isMainMenu = this.menus.some(
-      item => lastOpenKey && (item.key === lastOpenKey || item.path === lastOpenKey)
-    );
-    this.setState({
-      openKeys: isMainMenu ? [lastOpenKey] : [...openKeys],
-    });
-  }
   toggle = () => {
     const { collapsed } = this.props;
     this.props.dispatch({
@@ -236,42 +222,31 @@ class BasicLayout extends React.PureComponent {
     }
   }
   render() {
-    const { collapsed, getRouteData } = this.props;
-
-    const menu = (
-      <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
-        <Menu.Item disabled><Icon type="user" />个人中心</Menu.Item>
-        <Menu.Item disabled><Icon type="setting" />设置</Menu.Item>
-        <Menu.Divider />
-        <Menu.Item key="logout"><Icon type="logout" />退出登录</Menu.Item>
-      </Menu>
-    );
-
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed ? {} : {
-      openKeys: this.state.openKeys,
-    };
+    const { getRouteData } = this.props;
 
     return (
       <DocumentTitle title={this.getPageTitle()}>
         <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}><div style={{ minHeight: 'calc(100vh - 260px)' }}>
-          <Switch>
-            {
-              getRouteData('BasicLayout').map(item =>
-                (
-                  <Route
-                    exact={item.exact}
-                    key={item.path}
-                    path={item.path}
-                    component={item.component}
-                  />
-                )
-              )
-            }
-            <Redirect exact from="/" to="/dashboard/analysis" />
-          </Switch>
-        </div></div>}
+          {params => (
+            <div className={classNames(params)}>
+              <div style={{ minHeight: 'calc(100vh - 260px)' }}>
+                <Switch>
+                  {
+                    getRouteData('BasicLayout').map(item =>
+                      (
+                        <Route
+                          exact={item.exact}
+                          key={item.path}
+                          path={item.path}
+                          component={item.component}
+                        />
+                      )
+                    )
+                  }
+                  <Redirect exact from="/" to="/dashboard/analysis" />
+                </Switch>
+              </div>
+            </div>)}
         </ContainerQuery>
       </DocumentTitle>
     );
