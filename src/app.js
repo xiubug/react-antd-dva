@@ -2,6 +2,8 @@ import 'babel-polyfill';
 import dva from 'dva';
 import 'moment/locale/zh-cn';
 import browserHistory from 'history/createBrowserHistory';
+import { createLogger } from 'redux-logger';
+import { message } from 'antd';
 import './rollbar';
 import './index.less';
 import router from './router';
@@ -9,6 +11,10 @@ import router from './router';
 // 1. 创建应用，返回 dva 实例
 const app = dva({
   history: browserHistory(),
+  onError(e) {
+    message.error(e.message, /* duration */3);
+  },
+  onAction: createLogger({}),
 });
 
 // 2. 配置 hooks 或者注册插件

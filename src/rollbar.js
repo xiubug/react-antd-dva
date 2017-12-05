@@ -1,9 +1,9 @@
 import Rollbar from 'rollbar';
 
 // Track error by https://sentry.io/
-if (location.host === 'preview.pro.ant.design') {
+if (location.host === 'dva.sosout.com') {
   Rollbar.init({
-    accessToken: '033ca6d7c0eb4cc1831cf470c2649971',
+    accessToken: 'a7bfb90e615c42cbb4bd11196ae23afd',
     captureUncaught: true,
     captureUnhandledRejections: true,
     payload: {
