@@ -236,7 +236,7 @@ class BasicLayout extends React.PureComponent {
     }
   }
   render() {
-    const { currentUser, collapsed, getRouteData } = this.props;
+    const { collapsed, getRouteData } = this.props;
 
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
@@ -252,79 +252,26 @@ class BasicLayout extends React.PureComponent {
       openKeys: this.state.openKeys,
     };
 
-    const layout = (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          breakpoint="md"
-          onCollapse={this.onCollapse}
-          width={256}
-          className={styles.sider}
-        >
-          <div className={styles.logo}>
-            <Link to="/">
-              <img src="https://gw.alipayobjects.com/zos/rmsportal/iwWyPinUoseUxIAeElSx.svg" alt="logo" />
-              <h1>Ant Design Pro</h1>
-            </Link>
-          </div>
-          <Menu
-            theme="dark"
-            mode="inline"
-            {...menuProps}
-            onOpenChange={this.handleOpenChange}
-            selectedKeys={this.getCurrentMenuSelectedKeys()}
-            style={{ margin: '16px 0', width: '100%' }}
-          >
-            {this.getNavMenuItems(this.menus)}
-          </Menu>
-        </Sider>
-        <Layout>
-          <Header className={styles.header}>
-            <Icon
-              className={styles.trigger}
-              type={collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
-            <div className={styles.right}>
-              {currentUser.name ? (
-                <Dropdown overlay={menu}>
-                  <span className={`${styles.action} ${styles.account}`}>
-                    <Avatar size="small" className={styles.avatar} src={currentUser.avatar} />
-                    {currentUser.name}
-                  </span>
-                </Dropdown>
-              ) : <Spin size="small" style={{ marginLeft: 8 }} />}
-            </div>
-          </Header>
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <div style={{ minHeight: 'calc(100vh - 260px)' }}>
-              <Switch>
-                {
-                  getRouteData('BasicLayout').map(item =>
-                    (
-                      <Route
-                        exact={item.exact}
-                        key={item.path}
-                        path={item.path}
-                        component={item.component}
-                      />
-                    )
-                  )
-                }
-                <Redirect exact from="/" to="/dashboard/analysis" />
-              </Switch>
-            </div>
-          </Content>
-        </Layout>
-      </Layout>
-    );
-
     return (
       <DocumentTitle title={this.getPageTitle()}>
         <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
+          {params => <div className={classNames(params)}><div style={{ minHeight: 'calc(100vh - 260px)' }}>
+          <Switch>
+            {
+              getRouteData('BasicLayout').map(item =>
+                (
+                  <Route
+                    exact={item.exact}
+                    key={item.path}
+                    path={item.path}
+                    component={item.component}
+                  />
+                )
+              )
+            }
+            <Redirect exact from="/" to="/dashboard/analysis" />
+          </Switch>
+        </div></div>}
         </ContainerQuery>
       </DocumentTitle>
     );
@@ -332,7 +279,6 @@ class BasicLayout extends React.PureComponent {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,

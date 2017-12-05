@@ -63,7 +63,6 @@ function RouterConfig({ history, app }) {
       return getRouteData(navData, path);
     },
   };
-
   return (
     <LocaleProvider locale={zhCN}>
       <Router history={history}>

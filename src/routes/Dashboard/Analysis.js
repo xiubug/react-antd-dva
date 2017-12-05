@@ -25,6 +25,7 @@ export default class Analysis extends Component {
   }
 
   render() {
+    console.log("render Analysis.js");
     return (
       <div>
       主页

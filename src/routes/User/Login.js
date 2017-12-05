@@ -79,6 +79,7 @@ export default class Login extends Component {
     const { form, login } = this.props;
     const { getFieldDecorator } = form;
     const { count, type } = this.state;
+    console.log("render Login.js");
     return (
       <div className={styles['login-form']}>
         <Form onSubmit={this.handleSubmit}>

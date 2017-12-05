@@ -25,7 +25,6 @@ class UserLayout extends React.PureComponent {
   }
   render() {
     const { getRouteData } = this.props;
-
     return (
       <DocumentTitle title={this.getPageTitle()}>
         <div className={styles['user-layout']}>

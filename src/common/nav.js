@@ -14,7 +14,7 @@ const dynamicWrapper = (app, models, component) => dynamic({
 // nav data
 export const getNavData = app => [
   {
-    component: dynamicWrapper(app, ['user', 'login'], () => import('../layouts/BasicLayout')),
+    component: dynamicWrapper(app, [], () => import('../layouts/BasicLayout')),
     layout: 'BasicLayout',
     name: '首页',
     path: '/',
@@ -27,7 +27,7 @@ export const getNavData = app => [
           {
             name: '分析页',
             path: 'analysis',
-            component: dynamicWrapper(app, ['chart'], () => import('../routes/Dashboard/Analysis')),
+            component: dynamicWrapper(app, [], () => import('../routes/Dashboard/Analysis')),
           },
         ],
       },
@@ -45,7 +45,7 @@ export const getNavData = app => [
         children: [
           {
             name: '登录',
-            path: '/login',
+            path: 'login',
             component: dynamicWrapper(app, ['login'], () => import('../routes/User/Login')),
           },
         ],
