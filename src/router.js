@@ -11,6 +11,7 @@ import { getPlainNode } from './utils/utils';
 import styles from './index.less';
 import Config from './common/config';
 
+// 设置默认的加载组件
 dynamic.setDefaultLoadingComponent(() => {
   return <Spin size="large" className={styles.globalSpin} />;
 });
@@ -53,6 +54,7 @@ function requireAuth(Layout, props, passProps) {
 
 function RouterConfig({ history, app }) {
   const navData = getNavData(app);
+  console.log(navData);
   const UserLayout = getLayout(navData, 'UserLayout').component;
   const BasicLayout = getLayout(navData, 'BasicLayout').component;
 
