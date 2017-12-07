@@ -24,21 +24,6 @@ export default {
         payload: false,
       });
     },
-    *mobileSubmit(_, { call, put }) {
-      yield put({
-        type: 'changeSubmitting',
-        payload: true,
-      });
-      const response = yield call(fakeMobileLogin);
-      yield put({
-        type: 'changeLoginStatus',
-        payload: response,
-      });
-      yield put({
-        type: 'changeSubmitting',
-        payload: false,
-      });
-    },
     *logout(_, { put }) {
       yield put({
         type: 'changeLoginStatus',

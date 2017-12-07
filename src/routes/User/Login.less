@@ -4,113 +4,45 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -203px;
-  margin-left: 90px;
-  width: 406px;
-  height: 406px;
+  margin: -160px 0 0 -160px;
+  width: 320px;
+  height: 320px;
   padding: 36px;
   box-shadow: 0 0 100px rgba(0, 0, 0, .08);
   background-color: #fff;
   border-radius: 4px;
-
-  .tabs {
-    :global {
-      .ant-tabs-tab {
-        font-size: 16px;
-        line-height: 24px;
-      }
-      .ant-input-affix-wrapper .ant-input:not(:first-child) {
-        padding-left: 34px;
-      }
+  .login-logo {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    margin-bottom: 24px;
+    img {
+      width: 40px;
+      margin-right: 8px;
+    }
+    span {
+      font-size: 16px;
+      text-transform: uppercase;
+      display: inline-block;
     }
   }
-
-  :global {
-    .ant-tabs .ant-tabs-bar {
-      border-bottom: 0;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .ant-form-item {
-      margin-bottom: 24px;
-    }
-    .ant-form-explain {
-      font-size: 12px;
-      position: absolute;
-    }
-  }
-
-  .prefixIcon {
-    font-size: @font-size-base;
-    color: @disabled-color;
-  }
-
-  .getCaptcha {
-    display: block;
+  button {
     width: 100%;
   }
-
-  .additional {
-    text-align: left;
-
-    .forgot {
-      float: right;
-    }
-
-    .submit {
-      width: 100%;
-      margin-top: 24px;
-    }
-
-    :global {
-      .ant-form-item-control {
-        line-height: 22px;
+  .login-account {
+    color: #999;
+    text-align: center;
+    margin-top: 16px;
+    span {
+      &:first-child {
+        margin-right: 16px;
       }
     }
   }
-
-  .iconAlipay, .iconTaobao, .iconWeibo {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background: url('https://gw.alipayobjects.com/zos/rmsportal/itDzjUnkelhQNsycranf.svg');
-    margin-left: 16px;
-    vertical-align: middle;
-    cursor: pointer;
-  }
-
-  .iconAlipay {
-    background-position: -24px 0;
-
-    &:hover {
-      background-position: 0 0;
-    }
-  }
-
-  .iconTaobao {
-    background-position: -24px -24px;
-
-    &:hover {
-      background-position: 0 -24px;
-    }
-  }
-
-  .iconWeibo {
-    background-position: -24px -48px;
-
-    &:hover {
-      background-position: 0 -48px;
-    }
-  }
-
-  .other {
-    text-align: left;
-    margin-top: 24px;
-    line-height: 22px;
-
-    .register {
-      float: right;
+  :global {
+    .ant-form-item {
+      margin-bottom: 24px;
     }
   }
 }
