@@ -54,7 +54,6 @@ function requireAuth(Layout, props, passProps) {
 
 function RouterConfig({ history, app }) {
   const navData = getNavData(app);
-  console.log(navData);
   const UserLayout = getLayout(navData, 'UserLayout').component;
   const BasicLayout = getLayout(navData, 'BasicLayout').component;
 

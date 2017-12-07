@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import dva from 'dva';
 import 'moment/locale/zh-cn';
 import browserHistory from 'history/createBrowserHistory';
-import { createLogger } from 'redux-logger';
+// import { createLogger } from 'redux-logger';
 import { message } from 'antd';
 import './rollbar';
 import './index.less';
@@ -14,7 +14,7 @@ const app = dva({
   onError(e) {
     message.error(e.message, /* duration */3);
   },
-  onAction: createLogger({}),
+  // onAction: createLogger({}),
 });
 
 // 2. 配置 hooks 或者注册插件

@@ -91,7 +91,7 @@ export default class Login extends Component {
                 this.renderMessage('账户或密码错误')
               }
               <FormItem>
-                {getFieldDecorator('userName', {
+                {getFieldDecorator('username', {
                   rules: [{
                     required: type === 'account', message: '请输入账户名！',
                   }],
@@ -170,13 +170,6 @@ export default class Login extends Component {
             </TabPane>
           </Tabs>
           <FormItem className={styles.additional}>
-            {getFieldDecorator('remember', {
-              valuePropName: 'checked',
-              initialValue: true,
-            })(
-              <Checkbox className={styles.autoLogin}>自动登录</Checkbox>
-            )}
-            <a className={styles.forgot} href="">忘记密码</a>
             <Button size="large" loading={login.submitting} className={styles.submit} type="primary" htmlType="submit">
               登录
             </Button>

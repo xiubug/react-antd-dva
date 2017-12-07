@@ -54,7 +54,7 @@ export default {
     changeLoginStatus(state, { payload }) {
       return {
         ...state,
-        status: payload.status,
+        status: payload.length > 0 ? 'ok' : 'error',
         type: payload.type,
       };
     },
