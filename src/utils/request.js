@@ -22,8 +22,8 @@ function checkStatus(response) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url, options) {
-  url = Config.api + url;
+export default function request(sUrl, options) {
+  const url = Config.api + sUrl;
   const defaultOptions = {
     mode: 'cors',
     // cache: 'force-cache', 表示fetch请求不顾一切的依赖缓存, 即使缓存过期了, 它依然从缓存中读取. 除非没有任何缓存, 那么它将发送一个正常的request.
