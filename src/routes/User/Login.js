@@ -23,13 +23,11 @@ export default class Login extends Component {
       // 模拟登录成功用户Token
       Store.set(Config.USER_TOKEN, (new Date()).getTime());
       this.props.dispatch(routerRedux.push('/'));
-    } 
+    }
 
     // 登录失败
     if (nextProps.login.status === 'error') {
-      message.error('账户或密码错误', () => {
-        console.log('关闭了');
-      });
+      message.error('账户或密码错误', () => {});
     }
   }
 
