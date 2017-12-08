@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Menu, Icon, Tag, message } from 'antd';
+import { Layout, Menu, Icon, Tag, message } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
 import { Link, Route, Redirect, Switch } from 'dva/router';
@@ -9,8 +9,10 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import Debounce from 'lodash-decorators/debounce';
+import styles from './BasicLayout.less';
 
 const { SubMenu } = Menu;
+const { Header, Content, Footer, Sider } = Layout;
 
 const query = {
   'screen-xs': {
@@ -223,30 +225,77 @@ class BasicLayout extends React.PureComponent {
   }
   render() {
     const { getRouteData } = this.props;
-
+    const layout = (
+      <Layout className={styles['basic-layout']}>
+        <Header className={styles['basic-header']}>
+        </Header>
+      <Layout style={{ marginLeft: 200 }}>
+          <Sider style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }}>
+          <div className="logo" />
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
+            <Menu.Item key="1">
+              <Icon type="user" />
+              <span className="nav-text">nav 1</span>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Icon type="video-camera" />
+              <span className="nav-text">nav 2</span>
+            </Menu.Item>
+            <Menu.Item key="3">
+              <Icon type="upload" />
+              <span className="nav-text">nav 3</span>
+            </Menu.Item>
+            <Menu.Item key="4">
+              <Icon type="bar-chart" />
+              <span className="nav-text">nav 4</span>
+            </Menu.Item>
+            <Menu.Item key="5">
+              <Icon type="cloud-o" />
+              <span className="nav-text">nav 5</span>
+            </Menu.Item>
+            <Menu.Item key="6">
+              <Icon type="appstore-o" />
+              <span className="nav-text">nav 6</span>
+            </Menu.Item>
+            <Menu.Item key="7">
+              <Icon type="team" />
+              <span className="nav-text">nav 7</span>
+            </Menu.Item>
+            <Menu.Item key="8">
+              <Icon type="shop" />
+              <span className="nav-text">nav 8</span>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+          <div style={{ minHeight: 'calc(100vh - 260px)' }}>
+            <Switch>
+              {
+                getRouteData('BasicLayout').map(item =>
+                  (
+                    <Route
+                      exact={item.exact}
+                      key={item.path}
+                      path={item.path}
+                      component={item.component}
+                    />
+                  )
+                )
+              }
+              <Redirect exact from="/" to="/dashboard/analysis" />
+            </Switch>
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>
+          Ant Design ©2016 Created by Ant UED
+        </Footer>
+      </Layout>
+    </Layout>
+    );
     return (
       <DocumentTitle title={this.getPageTitle()}>
         <ContainerQuery query={query}>
-          {params => (
-            <div className={classNames(params)}>
-              <div style={{ minHeight: 'calc(100vh - 260px)' }}>
-                <Switch>
-                  {
-                    getRouteData('BasicLayout').map(item =>
-                      (
-                        <Route
-                          exact={item.exact}
-                          key={item.path}
-                          path={item.path}
-                          component={item.component}
-                        />
-                      )
-                    )
-                  }
-                  <Redirect exact from="/" to="/dashboard/analysis" />
-                </Switch>
-              </div>
-            </div>)}
+          {params => <div className={classNames(params)}>{layout}</div>}
         </ContainerQuery>
       </DocumentTitle>
     );
