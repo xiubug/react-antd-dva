@@ -29,13 +29,13 @@ export default class Login extends Component {
     // 登录失败
     if (nextProps.login.status === 'error') {
       this.props.dispatch({
-        type: `global/changeMessage`,
+        type: 'global/changeMessage',
         payload: true,
       });
       if (!this.props.messageStatus) {
         message.error('账户或密码错误', () => {
           this.props.dispatch({
-            type: `global/changeMessage`,
+            type: 'global/changeMessage',
             payload: false,
           });
         });
