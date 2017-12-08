@@ -7,6 +7,7 @@ export default {
     collapsed: false,
     notices: [],
     fetchingNotices: false,
+    messageStatus: false,
   },
 
   /**
@@ -42,6 +43,12 @@ export default {
         payload: count,
       });
     },
+    *changeMessage({ payload }, { put }) {
+      yield put({
+        type: 'changeMessageStatus',
+        payload,
+      });
+    },
   },
 
   /**
@@ -72,6 +79,12 @@ export default {
       return {
         ...state,
         fetchingNotices: payload,
+      };
+    },
+    changeMessageStatus(state, { payload }) {
+      return {
+        ...state,
+        messageStatus: payload,
       };
     },
   },

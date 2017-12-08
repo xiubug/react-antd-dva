@@ -10,6 +10,7 @@ const FormItem = Form.Item;
 
 @connect(state => ({
   login: state.login,
+  messageStatus: state.global.messageStatus,
 }))
 @Form.create()
 
@@ -27,7 +28,18 @@ export default class Login extends Component {
 
     // 登录失败
     if (nextProps.login.status === 'error') {
-      message.error('账户或密码错误', () => {});
+      this.props.dispatch({
+        type: `global/changeMessage`,
+        payload: true,
+      });
+      if (!this.props.messageStatus) {
+        message.error('账户或密码错误', () => {
+          this.props.dispatch({
+            type: `global/changeMessage`,
+            payload: false,
+          });
+        });
+      }
     }
   }
 
