@@ -251,7 +251,7 @@ class BasicLayout extends React.PureComponent {
           <Sider
             collapsible
             breakpoint="md"
-            className={collapsed ? `${styles['basic-sider']} ${styles.collapsed}` : styles.basicsider}
+            className={collapsed ? `${styles['basic-sider']} ${styles.collapsed}` : styles['basic-sider']}
             collapsed={collapsed}
             onCollapse={this.onCollapse}
           >
