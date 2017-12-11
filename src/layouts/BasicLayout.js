@@ -76,15 +76,6 @@ class BasicLayout extends React.PureComponent {
       payload: collapsed,
     });
   }
-  handleOpenChange = (openKeys) => {
-    const lastOpenKey = openKeys[openKeys.length - 1];
-    const isMainMenu = this.menus.some(
-      item => lastOpenKey && (item.key === lastOpenKey || item.path === lastOpenKey)
-    );
-    this.setState({
-      openKeys: isMainMenu ? [lastOpenKey] : [...openKeys],
-    });
-  }
   onMenuClick = ({ key }) => {
     if (key === 'logout') {
       this.props.dispatch({
@@ -209,6 +200,15 @@ class BasicLayout extends React.PureComponent {
     });
     return groupBy(newNotices, 'type');
   }
+  handleOpenChange = (openKeys) => {
+    const lastOpenKey = openKeys[openKeys.length - 1];
+    const isMainMenu = this.menus.some(
+      item => lastOpenKey && (item.key === lastOpenKey || item.path === lastOpenKey)
+    );
+    this.setState({
+      openKeys: isMainMenu ? [lastOpenKey] : [...openKeys],
+    });
+  }
   toggle = () => {
     const { collapsed } = this.props;
     this.props.dispatch({
@@ -248,20 +248,20 @@ class BasicLayout extends React.PureComponent {
         头部
         </Header>
         <Layout>
-          <Sider 
-            collapsible 
+          <Sider
+            collapsible
             breakpoint="md"
-            className={collapsed ? `${styles['basic-sider']} ${styles['collapsed']}` : styles['basic-sider']}
+            className={collapsed ? `${styles['basic-sider']} ${styles.collapsed}` : styles.basicsider}
             collapsed={collapsed}
             onCollapse={this.onCollapse}
           >
             <Menu
-              theme="dark" 
+              theme="dark"
               mode="inline"
               {...menuProps}
               onOpenChange={this.handleOpenChange}
               selectedKeys={this.getCurrentMenuSelectedKeys()}
-              className={collapsed ? `${styles['basic-menu']} ${styles['collapsed']}` : styles['basic-menu']}
+              className={collapsed ? `${styles['basic-menu']} ${styles.collapsed}` : styles['basic-menu']}
             >
               {this.getNavMenuItems(this.menus)}
             </Menu>
