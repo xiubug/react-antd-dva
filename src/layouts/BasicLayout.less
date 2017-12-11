@@ -46,6 +46,9 @@
       &.collapsed {
         width: 100px;
       }
+      .basic-menu-item {
+        padding-left: 68px !important;
+      }
     }
   }
   .basic-content {
@@ -55,7 +58,7 @@
     overflow-y: scroll;
     min-height: 100%;
     &::-webkit-scrollbar-thumb {
-      background-color: #e6e6e6;
+      background-color: transparent;
     }
 
     &::-webkit-scrollbar {
@@ -72,5 +75,18 @@
     bottom: 0;
     width: 100%;
     text-align: center;
+  }
+}
+
+:global {
+  .ant-menu-dark .ant-menu-sub {
+    margin-left: -20px;
+  }
+  .ant-menu-submenu-arrow {
+    margin-right: 20px;
+  }
+  .ant-layout-sider-children {
+    width: 200px;
+    overflow-y: scroll;
   }
 }
