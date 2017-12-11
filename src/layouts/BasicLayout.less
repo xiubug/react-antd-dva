@@ -1,114 +1,76 @@
 @import "~antd/lib/style/themes/default.less";
 
 .basic-layout {
+  height: 100vh;
   .basic-header {
-    background-color: #373d41;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #09c;
     height: 50px;
     line-height: 50px;
-  }
-}
-
-.header {
-  padding: 0 12px 0 0;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
-  position: relative;
-}
-
-.logo {
-  height: 64px;
-  position: relative;
-  line-height: 64px;
-  padding-left: (@menu-collapsed-width - 32px) / 2;
-  transition: all .3s;
-  background: #002140;
-  overflow: hidden;
-  img {
-    display: inline-block;
-    vertical-align: middle;
-    height: 32px;
-  }
-  h1 {
     color: #fff;
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 20px;
-    margin: 0 0 0 12px;
-    font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    font-weight: 600;
+    width: 100%;
+    z-index: 10;
   }
-}
-
-.trigger {
-  font-size: 20px;
-  line-height: 64px;
-  cursor: pointer;
-  transition: all .3s;
-  padding: 0 24px;
-  &:hover {
-    background: @primary-1;
-  }
-}
-
-@media screen and (max-width: @screen-xs) {
-  .trigger {
-    display: none;
-  }
-}
-
-.right {
-  float: right;
-  height: 100%;
-  .action {
-    cursor: pointer;
-    padding: 0 12px;
-    display: inline-block;
-    transition: all .3s;
-    height: 100%;
-    > i {
-      font-size: 16px;
-      vertical-align: middle;
+  .basic-sider {
+    min-height: 100vh;
+    box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+    flex: 0 0 180px !important;
+    max-width: 180px !important;
+    min-width: 180px !important;
+    width: 180px !important;
+    padding-top: 50px;
+    overflow: hidden;
+    :global {
+      .ant-layout-sider-trigger {
+        width: 180px !important;
+      }
     }
-    &:global(.ant-popover-open),
-    &:hover {
-      background: @primary-1;
+    &.collapsed {
+      flex: 0 0 80px !important;
+      max-width: 80px !important;
+      min-width: 80px !important;
+      width: 80px !important;
+      :global {
+        .ant-layout-sider-trigger {
+          width: 80px !important;
+        }
+      }
+    }
+    .basic-menu {
+      padding-bottom: 50px;
+      width: 200px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      &.collapsed {
+        width: 100px;
+      }
     }
   }
-  .search {
+  .basic-content {
+    width: 100%;
+    margin-top: 50px;
+    padding: 12px 20px 40px 20px;
+    overflow-y: scroll;
+    min-height: 100%;
+    &::-webkit-scrollbar-thumb {
+      background-color: #e6e6e6;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+  }
+  .basic-footer {
+    position: fixed;
+    height: 30px;
+    left: 0;
+    line-height: 30px;
     padding: 0;
-    margin: 0 12px;
-    &:hover {
-      background: transparent;
-    }
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
   }
-  .account {
-    .avatar {
-      margin: 20px 8px 20px 0;
-      color: @primary-color;
-      background: rgba(255, 255, 255, .85);
-      vertical-align: middle;
-    }
-  }
-}
-
-.menu {
-  :global(.anticon) {
-    margin-right: 8px;
-  }
-  :global(.ant-dropdown-menu-item) {
-    width: 160px;
-  }
-}
-
-:global {
-  .ant-layout {
-    overflow-x: hidden;
-  }
-}
-
-.sider {
-  min-height: 100vh;
-  box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
-  position: relative;
-  z-index: 10;
 }

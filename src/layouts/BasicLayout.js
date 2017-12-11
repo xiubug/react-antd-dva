@@ -44,6 +44,11 @@ class BasicLayout extends React.PureComponent {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
     this.menus = props.navData.reduce((arr, current) => arr.concat(current.children), []);
+    // 把一级 Layout 的 children 作为菜单项
+    this.menus = props.navData.reduce((arr, current) => arr.concat(current.children), []);
+    this.state = {
+      openKeys: this.getDefaultCollapsedSubMenus(props),
+    };
   }
   getChildContext() {
     const { location, navData, getRouteData } = this.props;
@@ -69,6 +74,15 @@ class BasicLayout extends React.PureComponent {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
+    });
+  }
+  handleOpenChange = (openKeys) => {
+    const lastOpenKey = openKeys[openKeys.length - 1];
+    const isMainMenu = this.menus.some(
+      item => lastOpenKey && (item.key === lastOpenKey || item.path === lastOpenKey)
+    );
+    this.setState({
+      openKeys: isMainMenu ? [lastOpenKey] : [...openKeys],
     });
   }
   onMenuClick = ({ key }) => {
@@ -160,10 +174,10 @@ class BasicLayout extends React.PureComponent {
   getPageTitle() {
     const { location, getRouteData } = this.props;
     const { pathname } = location;
-    let title = 'Ant Design Pro';
+    let title = 'React Antd Dva';
     getRouteData('BasicLayout').forEach((item) => {
       if (item.path === pathname) {
-        title = `${item.name} - Ant Design Pro`;
+        title = `${item.name} - React Antd Dva`;
       }
     });
     return title;
@@ -224,51 +238,35 @@ class BasicLayout extends React.PureComponent {
     }
   }
   render() {
-    const { getRouteData } = this.props;
+    const { getRouteData, collapsed } = this.props;
+    const menuProps = collapsed ? {} : {
+      openKeys: this.state.openKeys,
+    };
     const layout = (
       <Layout className={styles['basic-layout']}>
         <Header className={styles['basic-header']}>
         头部
         </Header>
-        <Layout style={{ marginLeft: 200 }}>
-          <Sider style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }}>
-            <div className="logo" />
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
-              <Menu.Item key="1">
-                <Icon type="user" />
-                <span className="nav-text">nav 1</span>
-              </Menu.Item>
-              <Menu.Item key="2">
-                <Icon type="video-camera" />
-                <span className="nav-text">nav 2</span>
-              </Menu.Item>
-              <Menu.Item key="3">
-                <Icon type="upload" />
-                <span className="nav-text">nav 3</span>
-              </Menu.Item>
-              <Menu.Item key="4">
-                <Icon type="bar-chart" />
-                <span className="nav-text">nav 4</span>
-              </Menu.Item>
-              <Menu.Item key="5">
-                <Icon type="cloud-o" />
-                <span className="nav-text">nav 5</span>
-              </Menu.Item>
-              <Menu.Item key="6">
-                <Icon type="appstore-o" />
-                <span className="nav-text">nav 6</span>
-              </Menu.Item>
-              <Menu.Item key="7">
-                <Icon type="team" />
-                <span className="nav-text">nav 7</span>
-              </Menu.Item>
-              <Menu.Item key="8">
-                <Icon type="shop" />
-                <span className="nav-text">nav 8</span>
-              </Menu.Item>
+        <Layout>
+          <Sider 
+            collapsible 
+            breakpoint="md"
+            className={collapsed ? `${styles['basic-sider']} ${styles['collapsed']}` : styles['basic-sider']}
+            collapsed={collapsed}
+            onCollapse={this.onCollapse}
+          >
+            <Menu
+              theme="dark" 
+              mode="inline"
+              {...menuProps}
+              onOpenChange={this.handleOpenChange}
+              selectedKeys={this.getCurrentMenuSelectedKeys()}
+              className={collapsed ? `${styles['basic-menu']} ${styles['collapsed']}` : styles['basic-menu']}
+            >
+              {this.getNavMenuItems(this.menus)}
             </Menu>
           </Sider>
-          <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+          <Content className={styles['basic-content']}>
             <div style={{ minHeight: 'calc(100vh - 260px)' }}>
               <Switch>
                 {
@@ -286,10 +284,10 @@ class BasicLayout extends React.PureComponent {
                 <Redirect exact from="/" to="/dashboard/analysis" />
               </Switch>
             </div>
+            <Footer className={styles['basic-footer']}>
+              React Antd Dva ©2017 Created by sosout
+            </Footer>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2016 Created by Ant UED
-          </Footer>
         </Layout>
       </Layout>
     );
