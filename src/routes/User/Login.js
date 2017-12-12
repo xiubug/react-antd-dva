@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import { Form, Input, Button, Icon, message } from 'antd';
+import { Form, Input, Button, Icon } from 'antd';
 import Store from 'store';
 import Config from '../../common/config';
 import styles from './Login.less';

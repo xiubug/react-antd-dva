@@ -96,9 +96,10 @@ export function digitUppercase(n) {
 
 // 弹窗未完全关闭禁止再次提交
 export function messageError(payload) {
-  return new Promise(resolve => {
-    message.error(payload, () => {
-      resolve(false);
-    });
-  });
+  message.error(payload);
+  // return new Promise(resolve => {
+  //   message.error(payload, () => {
+  //     resolve(false);
+  //   });
+  // });
 }
