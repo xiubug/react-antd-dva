@@ -53,12 +53,14 @@ function requireAuth(Layout, props, passProps) {
 }
 
 function RouterConfig({ history, app }) {
-  let navData = getNavData(app); 
+  const navData = getNavData(app);
   const UserLayout = getLayout(navData, 'UserLayout').component;
   const BasicLayout = getLayout(navData, 'BasicLayout').component;
   const passProps = {
     app,
-    navData: navData.filter((item) => item.layout != 'UserLayout'), // 剔除掉无需登录模块
+    navData: navData.filter((item) => {
+      return item.layout !== 'UserLayout';
+    }), // 剔除掉无需登录模块
     getRouteData: (path) => {
       return getRouteData(navData, path);
     },
