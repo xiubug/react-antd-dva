@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Menu, Icon, Tag, message, Dropdown, Button, Avatar } from 'antd';
+import { Layout, Menu, Icon, Tag, message, Dropdown, Avatar } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
 import { Link, Route, Redirect, Switch } from 'dva/router';
@@ -66,7 +66,7 @@ class BasicLayout extends React.PureComponent {
     // 获取用户信息
     this.props.dispatch({
       type: 'user/fetchCurrent',
-      payload: {id: Store.get(Config.USER_ID)},
+      payload: { id: Store.get(Config.USER_ID) },
     });
   }
   componentWillUnmount() {
@@ -258,8 +258,8 @@ class BasicLayout extends React.PureComponent {
           <Dropdown overlay={menu} placement="bottomCenter">
             <div className={styles['header-info']}>
               <div className={styles['user-name']}>
-              <Avatar size="small" className={styles.avatar} src={currentUser.avatar} />
-              sosout
+                <Avatar size="small" className={styles.avatar} src={currentUser.avatar} />
+                {currentUser.user_name}
               </div>
             </div>
           </Dropdown>

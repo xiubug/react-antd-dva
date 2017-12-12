@@ -2,7 +2,6 @@ import { queryCurrent } from '../services/user';
 
 export default {
   namespace: 'user',
-  
   state: {
     currentUser: {},
   },
@@ -13,7 +12,7 @@ export default {
       yield put({
         type: 'saveCurrentUser',
         payload: response,
-      })
+      });
     },
   },
 
@@ -22,7 +21,7 @@ export default {
       return {
         ...state,
         currentUser: action.payload[0],
-      }
+      };
     },
   },
 };

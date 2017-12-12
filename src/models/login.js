@@ -38,7 +38,7 @@ export default {
         ...state,
         status: payload.length > 0 ? 'ok' : 'error',
         type: payload.type,
-        info: payload
+        info: payload,
       };
     },
     changeSubmitting(state, { payload }) {
