@@ -39,15 +39,25 @@
       }
     }
     .basic-menu {
-      padding-bottom: 50px;
+      padding-bottom: 80px;
       width: 200px;
       overflow-x: hidden;
       overflow-y: scroll;
       &.collapsed {
         width: 100px;
+        :global {
+          .ant-menu-submenu {
+            width: 100px;
+          }
+        }
       }
       .basic-menu-item {
         padding-left: 68px !important;
+      }
+      :global {
+        .ant-menu-submenu {
+          width: 200px;
+        }
       }
     }
   }
@@ -79,8 +89,10 @@
 }
 
 :global {
-  .ant-menu-dark .ant-menu-sub {
-    margin-left: -20px;
+  .ant-menu-dark {
+    .ant-menu-sub {
+      margin-left: -20px;
+    }
   }
   .ant-menu-submenu-arrow {
     margin-right: 20px;
