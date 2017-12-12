@@ -44,8 +44,6 @@ class BasicLayout extends React.PureComponent {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
     this.menus = props.navData.reduce((arr, current) => arr.concat(current.children), []);
-    // 把一级 Layout 的 children 作为菜单项
-    this.menus = props.navData.reduce((arr, current) => arr.concat(current.children), []);
     this.state = {
       openKeys: this.getDefaultCollapsedSubMenus(props),
     };
@@ -162,7 +160,7 @@ class BasicLayout extends React.PureComponent {
       );
     });
   }
-  getPageTitle() {
+  getPageTitle() { // 获取页面标题
     const { location, getRouteData } = this.props;
     const { pathname } = location;
     let title = 'React Antd Dva';

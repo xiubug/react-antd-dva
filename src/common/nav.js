@@ -29,6 +29,28 @@ export const getNavData = app => [
             path: 'analysis',
             component: dynamicWrapper(app, [], () => import('../routes/Dashboard/Analysis')),
           },
+          {
+            name: '监控页',
+            path: 'monitor',
+            component: dynamicWrapper(app, [], () => import('../routes/Dashboard/Monitor')),
+          },
+          {
+            name: '工作台',
+            path: 'workplace',
+            component: dynamicWrapper(app, [], () => import('../routes/Dashboard/Workplace')),
+          },
+        ],
+      },
+      {
+        name: '表单页',
+        path: 'form',
+        icon: 'form',
+        children: [
+          {
+            name: '基础表单',
+            path: 'basic-form',
+            component: dynamicWrapper(app, [], () => import('../routes/Forms/BasicForm')),
+          },
         ],
       },
     ],

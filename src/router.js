@@ -53,13 +53,12 @@ function requireAuth(Layout, props, passProps) {
 }
 
 function RouterConfig({ history, app }) {
-  const navData = getNavData(app);
+  let navData = getNavData(app); 
   const UserLayout = getLayout(navData, 'UserLayout').component;
   const BasicLayout = getLayout(navData, 'BasicLayout').component;
-
   const passProps = {
     app,
-    navData,
+    navData: navData.filter((item) => item.layout != 'UserLayout'), // 剔除掉无需登录模块
     getRouteData: (path) => {
       return getRouteData(navData, path);
     },
@@ -69,7 +68,7 @@ function RouterConfig({ history, app }) {
       <Router history={history}>
         <Switch>
           <Route path="/user" render={props => <UserLayout {...props} {...passProps} />} />
-          <Route path="/dashboard/analysis" render={props => requireAuth(BasicLayout, props, passProps)} />
+          <Route path="/" render={props => requireAuth(BasicLayout, props, passProps)} />
           <Redirect exact from="/" to="/dashboard/analysis" />
         </Switch>
       </Router>
