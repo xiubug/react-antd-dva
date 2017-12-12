@@ -255,8 +255,12 @@ class BasicLayout extends React.PureComponent {
     const layout = (
       <Layout className={styles['basic-layout']}>
         <Header className={styles['basic-header']}>
+          <a className={styles['header-home']} target="_blank" href="javascript:void(0);"></a>
+          <a href="javascript:void(0);" target="_self" className={styles['header-home-link']}>
+            <span>管理控制台</span>
+          </a>
           <Dropdown overlay={menu} placement="bottomCenter">
-            <div className={styles['header-info']}>
+            <div className={styles['header-right']}>
               <div className={styles['user-name']}>
                 <Avatar size="small" className={styles.avatar} src={currentUser.avatar} />
                 {currentUser.user_name}

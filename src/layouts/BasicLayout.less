@@ -13,7 +13,44 @@
     width: 100%;
     z-index: 10;
     padding: 0;
-    .header-info {
+    .header-home {
+      position: relative;
+      display: block;
+      width: 50px;
+      background: #0087b4;
+      font-size: 28px;
+      color: #FFF;
+      text-align: center;
+      height: 50px;
+      line-height: 50px;
+      overflow: hidden;
+      float: left;
+      &:before {
+        content: '';
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        left: 11px;
+        top: 11px;
+        display: inline-block;
+        background: url(https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg) no-repeat center center;
+        background-size: cover;
+      }
+    }
+    .header-home-link {
+      display: inline-block;
+      height: 50px;
+      box-sizing: border-box;
+      padding: 0 20px;
+      color: #fff;
+      font-size: 14px;
+      line-height: 50px;
+      border-right: 1px solid #008fbf;
+      &:focus {
+        text-decoration: none;
+      }
+    }
+    .header-right {
       float: right;
       line-height: 50px;
       height: 50px;
