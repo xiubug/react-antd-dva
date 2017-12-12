@@ -255,10 +255,10 @@ class BasicLayout extends React.PureComponent {
     const layout = (
       <Layout className={styles['basic-layout']}>
         <Header className={styles['basic-header']}>
-          <a className={styles['header-home']} target="_blank" href="javascript:void(0);"></a>
-          <a href="javascript:void(0);" target="_self" className={styles['header-home-link']}>
+          <div className={styles['header-home']} />
+          <div className={styles['header-home-link']}>
             <span>管理控制台</span>
-          </a>
+          </div>
           <Dropdown overlay={menu} placement="bottomCenter">
             <div className={styles['header-right']}>
               <div className={styles['user-name']}>
