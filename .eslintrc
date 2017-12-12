@@ -1,7 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
-  "plugins": ["compat", "promise"],
+  "plugins": ["compat"],
   "env": {
     "browser": true,
     "node": true,
@@ -54,6 +54,6 @@
     }
   },
   "settings": {
-    "polyfills": ["fetch"]
+    "polyfills": ["fetch", "promises"]
   }
 }
