@@ -12,6 +12,32 @@
     color: #fff;
     width: 100%;
     z-index: 10;
+    padding: 0;
+    .header-info {
+      float: right;
+      line-height: 50px;
+      height: 50px;
+      display: block;
+      z-index: 2;
+      background: #09c;
+      color: #fff;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      cursor: pointer;
+      .user-name {
+        width: 100px;
+        padding: 0 10px;
+        border-left: 1px solid #008fbf;
+        text-align: center;
+      }
+      .avatar {
+        background: rgba(255, 255, 255, .85);
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+    }
   }
   .basic-sider {
     min-height: 100vh;
@@ -100,5 +126,10 @@
   .ant-layout-sider-children {
     width: 200px;
     overflow-y: scroll;
+  }
+  .ant-dropdown {
+    .anticon {
+      margin-right: 5px;
+    }
   }
 }

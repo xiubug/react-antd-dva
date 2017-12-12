@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Menu, Icon, Tag, message } from 'antd';
+import { Layout, Menu, Icon, Tag, message, Dropdown, Button, Avatar } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
 import { Link, Route, Redirect, Switch } from 'dva/router';
@@ -9,6 +9,8 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import Debounce from 'lodash-decorators/debounce';
+import Store from 'store';
+import Config from '../common/config';
 import styles from './BasicLayout.less';
 
 const { SubMenu } = Menu;
@@ -61,8 +63,10 @@ class BasicLayout extends React.PureComponent {
     return { location, breadcrumbNameMap };
   }
   componentDidMount() {
+    // 获取用户信息
     this.props.dispatch({
       type: 'user/fetchCurrent',
+      payload: {id: Store.get(Config.USER_ID)},
     });
   }
   componentWillUnmount() {
@@ -236,14 +240,29 @@ class BasicLayout extends React.PureComponent {
     }
   }
   render() {
-    const { getRouteData, collapsed } = this.props;
+    const { getRouteData, collapsed, currentUser } = this.props;
     const menuProps = collapsed ? {} : {
       openKeys: this.state.openKeys,
     };
+    const menu = (
+      <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
+        <Menu.Item disabled><Icon type="user" />个人中心</Menu.Item>
+        <Menu.Item disabled><Icon type="setting" />设置</Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="logout"><Icon type="logout" />退出登录</Menu.Item>
+      </Menu>
+    );
     const layout = (
       <Layout className={styles['basic-layout']}>
         <Header className={styles['basic-header']}>
-        头部
+          <Dropdown overlay={menu} placement="bottomCenter">
+            <div className={styles['header-info']}>
+              <div className={styles['user-name']}>
+              <Avatar size="small" className={styles.avatar} src={currentUser.avatar} />
+              sosout
+              </div>
+            </div>
+          </Dropdown>
         </Header>
         <Layout>
           <Sider
@@ -300,6 +319,7 @@ class BasicLayout extends React.PureComponent {
 }
 
 export default connect(state => ({
+  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,

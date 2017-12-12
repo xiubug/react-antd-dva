@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-import { fakeAccountLogin } from '../services/api';
+import { signIn, signOut } from '../services/api';
 
 export default {
   namespace: 'login',
@@ -14,7 +14,7 @@ export default {
         type: 'changeSubmitting',
         payload: true,
       });
-      const response = yield call(fakeAccountLogin, payload);
+      const response = yield call(signIn, payload);
       yield put({
         type: 'changeLoginStatus',
         payload: response,
@@ -24,14 +24,11 @@ export default {
         payload: false,
       });
     },
-    *logout(_, { put }) {
-      yield put({
-        type: 'changeLoginStatus',
-        payload: {
-          status: false,
-        },
-      });
-      yield put(routerRedux.push('/user/login'));
+    *logout(_, { call, put }) {
+      const response = yield call(signOut);
+      if (response) {
+        yield put(routerRedux.push('/user/login'));
+      }
     },
   },
 
@@ -41,6 +38,7 @@ export default {
         ...state,
         status: payload.length > 0 ? 'ok' : 'error',
         type: payload.type,
+        info: payload
       };
     },
     changeSubmitting(state, { payload }) {

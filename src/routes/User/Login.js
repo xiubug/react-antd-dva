@@ -21,13 +21,20 @@ export default class Login extends Component {
   componentWillReceiveProps(nextProps) {
     // 登录成功
     if (nextProps.login.status === 'ok') {
-      // 模拟登录成功用户Token
+      const userInfo = nextProps.login.info;
+      // 模拟登录成功用户Token，2个小时超时哦
       Store.set(Config.USER_TOKEN, (new Date()).getTime());
+      Store.set(Config.USER_ID, userInfo[0].id); // 存储登录信息
+
       this.props.dispatch(routerRedux.push('/'));
     }
 
     // 登录失败
     if (nextProps.login.status === 'error') {
+      this.props.dispatch({
+        type: 'global/changeMessage',
+        payload: true,
+      });
       message.error('账户或密码错误', () => {
         this.props.dispatch({
           type: 'global/changeMessage',
@@ -40,10 +47,6 @@ export default class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.props.messageStatus) return; // 弹窗未完全关闭禁止再次提交
-    this.props.dispatch({
-      type: 'global/changeMessage',
-      payload: true,
-    });
     const { type } = this.state;
     this.props.form.validateFields({ force: true },
       (err, values) => {
