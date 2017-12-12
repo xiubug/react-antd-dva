@@ -12,7 +12,7 @@ export default class Workplace extends PureComponent {
   render() {
     return (
       <div>
-      监控页
+      工作台
       </div>
     );
   }

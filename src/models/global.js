@@ -1,12 +1,10 @@
-import { queryNotices } from '../services/api';
+import { messageError } from '../utils/utils';
 
 export default {
   namespace: 'global', // model 的命名空间，同时也是他在全局 state 上的属性，只能用字符串，不支持通过 . 的方式创建多层命名空间
 
   state: { // 初始值，优先级低于传给 dva() 的 opts.initialState。
     collapsed: false,
-    notices: [],
-    fetchingNotices: false,
     messageStatus: false,
   },
 
@@ -21,32 +19,15 @@ export default {
    *  watcher
    */
   effects: {
-    *fetchNotices(_, { call, put }) {
-      yield put({
-        type: 'changeNoticeLoading',
-        payload: true,
-      });
-      const data = yield call(queryNotices);
-      yield put({
-        type: 'saveNotices',
-        payload: data,
-      });
-    },
-    *clearNotices({ payload }, { put, select }) {
-      yield put({
-        type: 'saveClearedNotices',
-        payload,
-      });
-      const count = yield select(state => state.global.notices.length);
-      yield put({
-        type: 'user/changeNotifyCount',
-        payload: count,
-      });
-    },
-    *changeMessage({ payload }, { put }) {
+    *changeMessage({ payload }, { call, put }) {
       yield put({
         type: 'changeMessageStatus',
-        payload,
+        payload: true,
+      });
+      const response = yield call(messageError, payload);
+      yield put({
+        type: 'changeMessageStatus',
+        payload: response,
       });
     },
   },
@@ -56,31 +37,6 @@ export default {
    * 格式为 (state, action) => newState 或 [(state, action) => newState, enhancer]。
    */
   reducers: {
-    changeLayoutCollapsed(state, { payload }) {
-      return {
-        ...state,
-        collapsed: payload,
-      };
-    },
-    saveNotices(state, { payload }) {
-      return {
-        ...state,
-        notices: payload,
-        fetchingNotices: false,
-      };
-    },
-    saveClearedNotices(state, { payload }) {
-      return {
-        ...state,
-        notices: state.notices.filter(item => item.type !== payload),
-      };
-    },
-    changeNoticeLoading(state, { payload }) {
-      return {
-        ...state,
-        fetchingNotices: payload,
-      };
-    },
     changeMessageStatus(state, { payload }) {
       return {
         ...state,

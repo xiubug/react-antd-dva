@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { message } from 'antd';
 
 export function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
@@ -91,4 +92,13 @@ export function digitUppercase(n) {
   }
 
   return s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整');
+}
+
+// 弹窗未完全关闭禁止再次提交
+export function messageError(payload) {
+  return new Promise(resolve => {
+    message.error(payload, () => {
+      resolve(false);
+    });
+  });
 }
