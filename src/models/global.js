@@ -37,6 +37,12 @@ export default {
    * 格式为 (state, action) => newState 或 [(state, action) => newState, enhancer]。
    */
   reducers: {
+    changeLayoutCollapsed(state, { payload }) {
+      return {
+        ...state,
+        collapsed: payload,
+      };
+    },
     changeMessageStatus(state, { payload }) {
       return {
         ...state,

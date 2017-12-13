@@ -225,20 +225,6 @@ class BasicLayout extends React.PureComponent {
     event.initEvent('resize', true, false);
     window.dispatchEvent(event);
   }
-  handleNoticeClear = (type) => {
-    message.success(`清空了${type}`);
-    this.props.dispatch({
-      type: 'global/clearNotices',
-      payload: type,
-    });
-  }
-  handleNoticeVisibleChange = (visible) => {
-    if (visible) {
-      this.props.dispatch({
-        type: 'global/fetchNotices',
-      });
-    }
-  }
   render() {
     const { getRouteData, collapsed, currentUser } = this.props;
     const menuProps = collapsed ? {} : {
