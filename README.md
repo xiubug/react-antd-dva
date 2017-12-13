@@ -2,6 +2,8 @@
 
 基于react + ant-design + dva + Mock 企业级后台管理系统最佳实践
 
+- 预览：http://dva.sosout.com/
+
 ## 特性
 
 - :gem: **优雅美观**：基于 Ant Design 体系精心设计
