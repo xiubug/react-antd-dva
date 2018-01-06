@@ -1,9 +1,8 @@
 {
   "entry": "src/app.js",
+  "publicPath": "/",
   "extraBabelPlugins": [
-    "transform-runtime",
     "transform-decorators-legacy",
-    "transform-class-properties",
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": true }]
   ],
   "env": {
@@ -13,17 +12,17 @@
       ]
     }
   },
-  "autoprefixer": {
-    "browsers": [
-      ">1%",
-      "last 4 versions",
-      "Firefox ESR",
-      "not ie < 9" // React doesn't support IE8 anyway
-    ],
-    "flexbox": "no-2009"
-  },
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 9" // React doesn't support IE8 anyway
+  ],
   "externals": {},
   "ignoreMomentLocale": true,
   "theme": "./src/components/theme.js",
+  "html": {
+    "template": "./src/index.ejs"
+  },
   "hash": true
 }

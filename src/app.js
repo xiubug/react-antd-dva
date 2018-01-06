@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+import '@babel/polyfill';
 import dva from 'dva';
 import 'moment/locale/zh-cn';
 import browserHistory from 'history/createBrowserHistory';
@@ -21,7 +21,7 @@ const app = dva({
 // app.use({});
 
 // 3. 注册 model
-app.model(require('./models/global'));
+app.model(require('./models/global').default);
 
 // 4. 注册路由表
 app.router(router);
