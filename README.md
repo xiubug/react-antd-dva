@@ -21,8 +21,8 @@
 ```bash
 $ git clone https://github.com/sosout/react-antd-dva.git
 $ cd react-antd-dva
-$ npm install
-$ npm start         # 访问 http://localhost:8888
+$ yarn install
+$ yarn start         # 访问 http://localhost:8888
 ```
 
 ## 兼容性

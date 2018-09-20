@@ -2,7 +2,6 @@
   "entry": "src/app.js",
   "publicPath": "/",
   "extraBabelPlugins": [
-    "transform-decorators-legacy",
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": true }]
   ],
   "env": {
