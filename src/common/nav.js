@@ -53,6 +53,18 @@ export const getNavData = app => [
           },
         ],
       },
+      {
+        name: 'demo',
+        path: 'demo',
+        icon: 'form',
+        children: [
+          {
+            name: 'dva demo',
+            path: 'dva-demo',
+            component: dynamicWrapper(app, [], () => import('../routes/Demo/DvaDemo')),
+          },
+        ],
+      },
     ],
   },
   {

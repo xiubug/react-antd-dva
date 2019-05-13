@@ -22,6 +22,7 @@ const app = dva({
 
 // 3. 注册 model
 app.model(require('./models/global').default);
+app.model(require('./models/products').default);
 
 // 4. 注册路由表
 app.router(router);
