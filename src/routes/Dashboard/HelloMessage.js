@@ -1,12 +1,14 @@
+/**
+ * Auth: zzh
+ * Desc: hello word
+ */
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import HelloMessage from './HelloMessage';
-import Timer from './Timer';
 
 @connect(state => ({
   chart: state.chart,
 }))
-export default class Analysis extends Component {
+export default class HelloMessage extends Component {
   state = {};
 
   componentDidMount() {}
@@ -17,8 +19,7 @@ export default class Analysis extends Component {
   render() {
     return (
       <div>
-        <HelloMessage name="Kerry Wang" />
-        <Timer />
+      Hello {this.props.name} !
       </div>
     );
   }
