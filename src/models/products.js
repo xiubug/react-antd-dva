@@ -12,5 +12,8 @@ export default {
     deleteProductById(state, { payload: id }) {
       return state.filter(item => item.id !== id);
     },
+    addProduct(state, { payload: param }) {
+      return [...state, { ...param }];
+    },
   },
 };
