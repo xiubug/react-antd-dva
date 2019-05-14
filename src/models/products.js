@@ -1,6 +1,3 @@
-import { routerRedux } from 'dva/router';
-import { signOut } from '../services/api';
-
 export default {
   namespace: 'products',
 
@@ -9,14 +6,7 @@ export default {
     { name: 'antd', id: 2 },
   ],
 
-  effects: {
-    *logout(_, { call, put }) {
-      const response = yield call(signOut);
-      if (response) {
-        yield put(routerRedux.push('/user/login'));
-      }
-    },
-  },
+  effects: {},
 
   reducers: {
     deleteProductById(state, { payload: id }) {
