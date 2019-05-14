@@ -4,6 +4,7 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'dva';
+import { notification } from 'antd';
 import './DvaDemo.less';
 import ProductList from './ProductList';
 
@@ -24,6 +25,12 @@ export default class DvaDemo extends Component {
   }
 
   handleAdd = () => {
+    if (!this.state.inputValue) {
+      notification.error({
+        message: '姓名不能为空',
+      });
+      return;
+    }
     const param = {
       name: this.state.inputValue,
       id: this.props.products.length + 1,
@@ -35,6 +42,13 @@ export default class DvaDemo extends Component {
   };
 
   handleDelete = (id) => {
+    if (this.props.products.length === 1) {
+      notification.error({
+        message: '删除失败',
+        description: '至少有一条product！',
+      });
+      return;
+    }
     this.props.dispatch({
       type: 'products/deleteProductById',
       payload: id,
@@ -44,7 +58,7 @@ export default class DvaDemo extends Component {
   render() {
     return (
       <div>
-        <input onChange={e => this.setState({ inputValue: e.target.value })} />
+        <input onChange={e => this.setState({ inputValue: e.target.value })} placeholder="请输入name" />
         <button onClick={this.handleAdd}>Add</button>
         <h2 className="text-red">Dva Demo! ProductList!</h2>
         <ProductList onDelete={this.handleDelete} products={this.props.products} />
